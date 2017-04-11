@@ -79,10 +79,14 @@ def make_text(chains):
 
     words = []
 
-    # your code goes here
+     # Say something
+
+
+
 
     return " ".join(words)
 
+# assigns greens-eggs.txt to variable
 input_path = "green-eggs.txt"
 
 # Open the file and turn it into one long string
@@ -93,7 +97,7 @@ chains = make_chains(input_text)
 
 print chains
 
-# # Produce random text
-# random_text = make_text(chains)
+# Produce random text
+random_text = make_text(chains)
 
-# print random_text
+print random_text
