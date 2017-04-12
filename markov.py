@@ -77,28 +77,43 @@ def make_text(chains):
 
     words = []
 
+    # psuedocode
+
+    # while t1 has VALUES 
+    #     --> t2
+    #         while t2 has VALUES:
+    #             --> t3
+    #             pass
+
+
     # Set random tuple to variable X
     x = choice(chains.keys())
 
-    chains[x] = choice()
+    # chains[x] = choice()
 
-    # Unpack X - a tuple - to get  
-    (key1,  key2) = x
+    # Rnadomly choose a VALUE from a list
+    word = choice(chains[x])
+
+    # # Unpack X - a tuple - to get  
+    # (key1,  key2) = x
     # print key1
     # print key2
+    # Append key1, key2 and word to words
+    # words.append(key1)
+    # words.append(key2)
 
-    # 
-    words.append(key1)
-    words.append(key2)
-
-    # words.append(str(choice(chains.keys())))
+    # Append x[0], x[1]. and word to words
+    words.append(x[0])
+    words.append(x[1])
+    words.append(word)
 
     return words
     # return " ".join(words)
 
+
 """ 
-We need code review 
-TAs are busy with other cohorts
+This works for the first part. 
+Next up: Loop through the rest of the dictionary
 """
 
 # assigns greens-eggs.txt to variable
