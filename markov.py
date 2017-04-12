@@ -15,10 +15,10 @@ def open_and_read_file(file_path):
     
     """
 
-    # read the file, return text as a string titled "contents"
+    # Read the file, return text as a string titled "contents"
     contents = open(file_path).read()
 
-    # return contents of your file as one long string
+    # Return contents of your file as one long string
     return contents
 
 def make_chains(text_string):
@@ -46,30 +46,30 @@ def make_chains(text_string):
 
     """
 
-    # split text string into a list of words
+    # Split text string into a list of words
     words = text_string.split()
 
-    # create dictionary
+    # Create dictionary
     chains = {}
 
-    # iterate over the index numbers of the list
+    # Iterate over the index numbers of the list
     for i in range(len(words)-2):
         
-        # create a tuple of two n-grams
+        # Create a tuple of two n-grams
         bigrams = (words[i], words[i+1])
 
-        # check for repeat of keys / bigrams
+        # Check for repeat of keys / bigrams
         if bigrams not in chains:
 
-            # if the key doesn't exists, add key to chains
+            # If the key doesn't exists, add key to chains
             chains[bigrams] = [words[i+2]]
 
-       # if bigram is in the list, append value to the type list
+       # If bigram is in the list, append value to the type list
         else:
             chains[bigrams].append(words[i+2])
 
-    # import pprint
-    # pprint.pprint(chains)
+    # Import pprint
+    # Pprint.pprint(chains)
     return chains
 
 def make_text(chains):
@@ -92,7 +92,7 @@ def make_text(chains):
     words.append(key[0])
     words.append(key[1])
 
-    # while tuple is a key in chains, keep looping 
+    # While tuple is a key in chains, keep looping 
     while key in chains:
 
         # Randomly choose a value from chains
@@ -105,7 +105,7 @@ def make_text(chains):
 
     return " ".join(words)
 
-# assigns greens-eggs.txt to variable
+# Assign greens-eggs.txt to variable
 input_path = "gettysburg.txt"
 
 # Open the file and turn it into one long string
@@ -114,7 +114,7 @@ input_text = open_and_read_file(input_path)
 # Get a Markov chain
 chains = make_chains(input_text)
 
-# print chains       <-- do this to test a portion of this exercise
+# Print chains       <-- do this to test a portion of this exercise
 
 # Produce random text
 random_text = make_text(chains)
