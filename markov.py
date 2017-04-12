@@ -1,6 +1,5 @@
 """Generate markov text from text files."""
 
-
 from random import choice
 
 
@@ -73,18 +72,34 @@ def make_chains(text_string):
 
     # Code has been revieweed and works up to this point
 
-
 def make_text(chains):
     """Returns text from chains."""
 
     words = []
 
-     # Say something
+    # Set random tuple to variable X
+    x = choice(chains.keys())
 
+    chains[x] = choice()
 
+    # Unpack X - a tuple - to get  
+    (key1,  key2) = x
+    # print key1
+    # print key2
 
+    # 
+    words.append(key1)
+    words.append(key2)
 
-    return " ".join(words)
+    # words.append(str(choice(chains.keys())))
+
+    return words
+    # return " ".join(words)
+
+""" 
+We need code review 
+TAs are busy with other cohorts
+"""
 
 # assigns greens-eggs.txt to variable
 input_path = "green-eggs.txt"
