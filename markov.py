@@ -1,4 +1,6 @@
-"""Generate markov text from text files."""
+"""
+Generate markov text from text files.
+"""
 
 from random import choice
 
@@ -13,11 +15,10 @@ def open_and_read_file(file_path):
     
     """
 
-    # your code goes here
-    # read the file, return as text as a string titled "contents"
+    # read the file, return text as a string titled "contents"
     contents = open(file_path).read()
 
-    # return "Contents of your file as one long string"
+    # return contents of your file as one long string
     return contents
 
 def make_chains(text_string):
@@ -45,13 +46,13 @@ def make_chains(text_string):
 
     """
 
-    # Make a list of words in text_string
+    # split text string into a list of words
     words = text_string.split()
 
     # create dictionary
     chains = {}
 
-    # Iterate over the index numbers of the list
+    # iterate over the index numbers of the list
     for i in range(len(words)-2):
         
         # create a tuple of two n-grams
@@ -67,57 +68,45 @@ def make_chains(text_string):
         else:
             chains[bigrams].append(words[i+2])
 
-
+    # import pprint
+    # pprint.pprint(chains)
     return chains
 
-    # Code has been revieweed and works up to this point
-
 def make_text(chains):
-    """Returns text from chains."""
+    """
+    Returns text from chains.
+    """
 
     words = []
 
-    # psuedocode
-
-    # while t1 has VALUES 
-    #     --> t2
-    #         while t2 has VALUES:
-    #             --> t3
-    #             pass
+    # Set random tuple to variable key
+    key = choice(chains.keys())
 
 
-    # Set random tuple to variable X
-    x = choice(chains.keys())
+    # First time through key in chains, unpack X - a tuple - to get  
+    # key[0], key[1]  = key
+    # print key0]
+    # print key[2]
+    # Append key[0], key[1] to words
 
-    # chains[x] = choice()
+    words.append(key[0])
+    words.append(key[1])
 
-    # Rnadomly choose a VALUE from a list
-    word = choice(chains[x])
+    # while tuple is a key in chains, keep looping 
+    while key in chains:
 
-    # # Unpack X - a tuple - to get  
-    # (key1,  key2) = x
-    # print key1
-    # print key2
-    # Append key1, key2 and word to words
-    # words.append(key1)
-    # words.append(key2)
+        # Randomly choose a value from chains
+        word = choice(chains[key])
 
-    # Append x[0], x[1]. and word to words
-    words.append(x[0])
-    words.append(x[1])
-    words.append(word)
+        # Append word to words
+        words.append(word)
 
-    return words
-    # return " ".join(words)
+        key = (key[1], word)
 
-
-""" 
-This works for the first part. 
-Next up: Loop through the rest of the dictionary
-"""
+    return " ".join(words)
 
 # assigns greens-eggs.txt to variable
-input_path = "green-eggs.txt"
+input_path = "gettysburg.txt"
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
@@ -125,9 +114,11 @@ input_text = open_and_read_file(input_path)
 # Get a Markov chain
 chains = make_chains(input_text)
 
-print chains
+# print chains       <-- do this to test a portion of this exercise
 
 # Produce random text
 random_text = make_text(chains)
 
 print random_text
+
+# Achievement unlocked! Code reviewed by Leslie and Agne. Is working!"
