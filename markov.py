@@ -1,10 +1,11 @@
 """
-Generate markov text from text files.
+Generate markov text from text files and post to Twitter.
 """
 
 from random import choice
 import sys
-
+import os           # Access our OS environment variables
+import twitter      # Importing twitter module on lab machines
 
 def open_and_read_file(file_path):
     """
@@ -104,8 +105,40 @@ def make_text(chains):
 
         key = (key[1], word)
 
-    return " ".join(words)
+    # return " ".join(words)
 
+    # define variable of returned " ".join(words) as markov-tweet
+    markov_tweet = " ".join(words)
+
+    return markov_tweet
+
+
+def tweet(markov_tweet):
+
+    # Set max. 140 characters 
+    markov_tweet = markov_tweet[:140]
+
+    # Post random Markov chain text to Twitter
+
+    # Using Python os.environ to get environmental variables
+    # Reminder: Run `source secrets.sh` before running 
+    # this file to set required environmental variables.
+
+    api = twitter.Api(
+        consumer_key=os.environ['TWITTER_CONSUMER_KEY'],
+        consumer_secret=os.environ['TWITTER_CONSUMER_SECRET'],
+        access_token_key=os.environ['TWITTER_ACCESS_TOKEN_KEY'],
+        access_token_secret=os.environ['TWITTER_ACCESS_TOKEN_SECRET'])
+
+    # Print info about credentials to make sure they're correct
+    print api.VerifyCredentials()
+
+    # Send a tweet
+    status = api.PostUpdate(markov_tweet)
+    print status.text
+
+    # If you updated secrets.sh, you can go to your Twitter 
+    # timeline to see it.
 
 # Assign greens-eggs.txt to variable
 input_path = sys.argv[1]
@@ -121,6 +154,6 @@ chains = make_chains(input_text)
 # Produce random text
 random_text = make_text(chains)
 
-print random_text
+tweet(random_text)
 
-# Achievement unlocked! Code reviewed by Leslie and Agne. Is working!"
+# Mission Accomplished! We're TWITS! Code reviewed by Leslie, Agne and Kiko.
