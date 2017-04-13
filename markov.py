@@ -118,6 +118,11 @@ def tweet(markov_tweet):
     # Set max. 140 characters 
     markov_tweet = markov_tweet[:140]
 
+    # set variable to True
+    # keep_tweeting = True
+
+
+
     # Post random Markov chain text to Twitter
 
     # Using Python os.environ to get environmental variables
@@ -136,6 +141,20 @@ def tweet(markov_tweet):
     # Send a tweet
     status = api.PostUpdate(markov_tweet)
     print status.text
+
+        # Continue tweeting until prompted to quit
+    while True:
+
+        answer = raw_input("Enter to tweet again [q to quit]")
+
+        if answer == "q":
+            # keep_tweeting = False
+            break
+
+        tweet(markov_tweet)
+
+        print "Wow! That\'s deep."
+        print "Your words have been shared with the intrawebs."
 
     # If you updated secrets.sh, you can go to your Twitter 
     # timeline to see it.
